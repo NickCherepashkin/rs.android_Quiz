@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Quiz</string>
+    <string name="fragment_toolbar_title">Break Dance Base. Question</string>
+    <string name="fragment_next_button">Next</string>
+    <string name="fragment_prev_button">Previous</string>
+    <string name="fragment_submit_button">Submit</string>
+    <string name="result_share_button">Share</string>
+    <string name="result_back_button">Back</string>
+    <string name="result_exit_button">Exit</string>
+    <string name="score_text">Your score is</string>
+    <string name="share_subject">Your quiz results</string>
+    <string name="your_answer">Your answer:</string>
 </resources>
