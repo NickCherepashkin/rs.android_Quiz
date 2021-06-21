@@ -1,6 +1,7 @@
 package com.rsschool.quiz
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
@@ -19,6 +20,8 @@ class MainActivity : FragmentActivity(), QuizInterface {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        questionList.value = QuestionsList.getQuizQuestions()
+
         val adapter = ViewPagerAdapter(this)
         binding.apply {
             viewPager.adapter = adapter
@@ -27,6 +30,9 @@ class MainActivity : FragmentActivity(), QuizInterface {
 
             viewPager.registerOnPageChangeCallback(object :
                 ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                }
             })
         }
     }
@@ -44,16 +50,15 @@ class MainActivity : FragmentActivity(), QuizInterface {
     }
 
     private fun getQuestionsList(): List<QuestionBean> {
-        questionList.value = QuestionsList.getQuizQuestions()
         return questionList.value ?: listOf()
     }
 
     override fun goNext(currentIndex: Int) {
-        binding.viewPager.currentItem = currentIndex + 1
+        binding.viewPager.setCurrentItem(currentIndex + 1)
     }
 
     override fun goPrev(currentIndex: Int) {
-        binding.viewPager.currentItem = currentIndex - 1
+        binding.viewPager.setCurrentItem(currentIndex - 1)
     }
 
     override fun getQuestionCount(): Int = getQuestionsList().size
@@ -66,7 +71,7 @@ class MainActivity : FragmentActivity(), QuizInterface {
         for (question in getQuestionsList()) {
             question.userAnswer = -1
         }
-        binding.viewPager.currentItem = 0
+        binding.viewPager.setCurrentItem(0)
     }
 
     override fun getResultText(): String {

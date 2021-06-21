@@ -46,8 +46,8 @@ class QuizFragment : Fragment() {
 
         binding?.apply {
             if (quizQuestion?.userAnswer != -1) {
-                radioGroup.forEachIndexed { index, view ->
-                    if (index == quizQuestion?.userAnswer) {
+                radioGroup.forEachIndexed { questionNumber, view ->
+                    if (questionNumber == quizQuestion?.userAnswer) {
                         radioGroup.check(view.id)
                     }
                 }
